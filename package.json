@@ -1,0 +1,47 @@
+{
+  "name": "tg-proxy",
+  "version": "1.0.0",
+  "description": "Forward-прокси к api.telegram.org и клиент к нему для Node-ботов",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ainside/tg-proxy.git"
+  },
+  "main": "client/index.js",
+  "types": "client/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./client/index.d.ts",
+      "default": "./client/index.js"
+    },
+    "./telegraf": {
+      "types": "./client/telegraf.d.ts",
+      "default": "./client/telegraf.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "//typesVersions": "Для проектов с moduleResolution: node — там exports не читается.",
+  "typesVersions": {
+    "*": {
+      "telegraf": ["client/telegraf.d.ts"],
+      "*": ["client/index.d.ts"]
+    }
+  },
+  "bin": {
+    "tg-proxy-check": "client/check.js"
+  },
+  "files": [
+    "client",
+    "proxy-server.js"
+  ],
+  "scripts": {
+    "start": "node proxy-server.js",
+    "check": "node client/check.js"
+  },
+  "dependencies": {
+    "https-proxy-agent": "^7.0.6"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
